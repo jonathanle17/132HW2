@@ -1,4 +1,4 @@
-SELECT l.type
+SELECT l.type AS loanType
 FROM loan l
 LEFT JOIN borrower b ON l.no = b.lno
 /* joins all loans to their borrower by loan number */
