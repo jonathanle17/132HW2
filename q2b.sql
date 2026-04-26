@@ -1,10 +1,10 @@
 DELETE FROM borrower
 WHERE lno IN (
-    SELECT no 
+    SELECT no
     FROM loan
     WHERE type = 'jumbo mortgage'
 );
-/* deletes from borrowers (children) so no link between parents of customers and loans */
+/* deletes all borrowers (children) of jumbo mortgage loans */
 
 DELETE FROM customer
 WHERE name IN (
@@ -13,9 +13,8 @@ WHERE name IN (
     JOIN loan l ON b.lno = l.no
     WHERE l.type = 'jumbo mortgage'
 );
-/* looks for names of borrowers who have loans of type 'jumbo mortgage' */
-/* deletes from customers (parents) so no link between parents of customers and loans */
+/* deletes all customers (parents) of jumbo mortgage loans, which will also delete their borrowers due to cascade delete */
 
 DELETE FROM loan
 WHERE type = 'jumbo mortgage';
-/* deletes from loans (parents) so no link between parents of customers and loans */
+/* deletes all jumbo mortgage loans, which will also delete their borrowers due to cascade delete */
