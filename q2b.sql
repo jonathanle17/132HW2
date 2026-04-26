@@ -1,4 +1,4 @@
-WITH TargetCustomers AS (
+CREATE TEMPORARY TABLE TargetCustomers AS (
     SELECT DISTINCT b.cname
     FROM borrower b
     JOIN loan l ON b.lno = l.no
@@ -25,4 +25,7 @@ WHERE name IN (SELECT cname FROM TargetCustomers);
 DELETE FROM loan
 WHERE type = 'jumbo mortgage';
 /* removes all loans of type 'jumbo mortgage' */
+
+DROP TABLE TargetCustomers;
+/* drops the temporary table TargetCustomers */
 
