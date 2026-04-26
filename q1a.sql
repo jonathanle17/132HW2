@@ -1,4 +1,4 @@
-SELECT DISTINCT c.name AND l.no
+SELECT DISTINCT c.name, l.no
 FROM customer c
 JOIN borrower b ON c.name = b.cname
 /* joins all borrowers to their customer table with credit score by name */
