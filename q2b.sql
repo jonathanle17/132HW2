@@ -1,9 +1,8 @@
-CREATE TEMPORARY TABLE TargetCustomers AS (
-    SELECT DISTINCT b.cname
-    FROM borrower b
-    JOIN loan l ON b.lno = l.no
-    WHERE l.type = 'jumbo mortgage'
-)
+CREATE TEMPORARY TABLE TargetCustomers AS 
+SELECT DISTINCT b.cname
+FROM borrower b
+JOIN loan l ON b.lno = l.no
+WHERE l.type = 'jumbo mortgage'
 /* identifies customers who have borrowed a jumbo mortgage loan, creating a temporary table TargetCustomers with their names */
 
 DELETE FROM borrower
